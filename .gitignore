@@ -1,0 +1,22 @@
+# Local dependencies and generated verification artifacts
+node_modules/
+output/
+coverage/
+*.log
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+*.pem
+*.key
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
