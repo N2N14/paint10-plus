@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f7">
+  <meta name="description" content="Windows 10 经典画图风格的本地绘图工具，增强精准色彩、曲线箭头、精细橡皮、竖排字体和高清导出。">
+  <title>未命名 - 画图增强版</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="i-select" viewBox="0 0 24 24"><path d="m5 3 14 10-7 1-3 7-4-18Z"/><path d="m12 14 4 6"/></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5a2 2 0 0 1 4 0v7-9a2 2 0 0 1 4 0v9-7a2 2 0 0 1 4 0v9c0 5-3 8-7 8-3 0-5-2-7-5l-3-4a2 2 0 0 1 3-3l2 2Z"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-4-4L5 15l-1 5Z"/><path d="M13 20h7"/></symbol>
+      <symbol id="i-line" viewBox="0 0 24 24"><path d="m5 19 14-14"/><circle cx="5" cy="19" r="1.5"/><circle cx="19" cy="5" r="1.5"/></symbol>
+      <symbol id="i-curve" viewBox="0 0 24 24"><path d="M4 19C7 3 17 21 20 5"/><path d="m4 19 3-9m13-5-3 9" opacity=".4"/><rect x="2.5" y="17.5" width="3" height="3"/><rect x="18.5" y="3.5" width="3" height="3"/></symbol>
+      <symbol id="i-polyline" viewBox="0 0 24 24"><path d="m4 18 5-12 6 10 5-11"/><circle cx="4" cy="18" r="1.5"/><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="16" r="1.5"/><circle cx="20" cy="5" r="1.5"/></symbol>
+      <symbol id="i-rect" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14"/></symbol>
+      <symbol id="i-roundrect" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="4"/></symbol>
+      <symbol id="i-ellipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="7"/></symbol>
+      <symbol id="i-diamond" viewBox="0 0 24 24"><path d="m12 3 9 9-9 9-9-9 9-9Z"/></symbol>
+      <symbol id="i-triangle" viewBox="0 0 24 24"><path d="m12 4 9 16H3l9-16Z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+      <symbol id="i-hexagon" viewBox="0 0 24 24"><path d="m7 4 10 0 5 8-5 8H7l-5-8 5-8Z"/></symbol>
+      <symbol id="i-parallelogram" viewBox="0 0 24 24"><path d="M8 5h14l-6 14H2L8 5Z"/></symbol>
+      <symbol id="i-trapezoid" viewBox="0 0 24 24"><path d="M7 5h10l5 14H2L7 5Z"/></symbol>
+      <symbol id="i-cylinder" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v14c0 4 14 4 14 0V5"/></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M6 18a4 4 0 0 1-1-8 5 5 0 0 1 9-4 4 4 0 0 1 6 5 4 4 0 0 1-1 7H6Z"/></symbol>
+      <symbol id="i-speech" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7l-6 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 9h10M7 13h6"/></symbol>
+      <symbol id="i-frame" viewBox="0 0 24 24"><path d="M7 2v20M17 2v20M2 7h20M2 17h20"/></symbol>
+      <symbol id="i-arc" viewBox="0 0 24 24"><path d="M4 18a9 9 0 0 1 16 0"/><path d="M4 16v4m16-4v4"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M3 12h18m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-doublearrow" viewBox="0 0 24 24"><path d="M3 12h18m-6-6 6 6-6 6M9 6l-6 6 6 6"/></symbol>
+      <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 5h16M12 5v16M8 21h8M4 5v4m16-4v4"/></symbol>
+      <symbol id="i-eraser" viewBox="0 0 24 24"><path d="m14 3 7 7-10 10H6l-4-4L14 3Z"/><path d="m8 9 7 7M11 20h11"/></symbol>
+      <symbol id="i-eyedropper" viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l1-5L16 4a3 3 0 0 1 4 4L9 19l-5 1Z"/><path d="m13 4 7 7"/></symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 5 4 10l5 5M4 10h10a6 6 0 0 1 0 12"/></symbol>
+      <symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 5 5 5-5 5m5-5H10a6 6 0 0 0 0 12"/></symbol>
+      <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 3h12l4 4v14H3V3h2Z"/><path d="M7 3v7h10V3M7 21v-7h10v7"/></symbol>
+      <symbol id="i-import" viewBox="0 0 24 24"><path d="M4 15v6h16v-6M12 3v13m-5-5 5 5 5-5"/></symbol>
+      <symbol id="i-export" viewBox="0 0 24 24"><path d="M4 15v6h16v-6M12 16V3m-5 5 5-5 5 5"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.1c-.9.5-1.3 1-1.3 2.4M12 17h.01"/></symbol>
+      <symbol id="i-sample" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m4 17 5-6 4 4 3-4 5 6"/><circle cx="16" cy="7" r="1.5"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 5 7 7-7 7"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 9 6-6 6 6M12 3v13M5 21h14"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 15 6 6 6-6M12 21V8M5 3h14"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h4a4 4 0 0 0 4-4c0-3-4-6-9-6Z"/><circle cx="7" cy="9" r=".7"/><circle cx="11" cy="6" r=".7"/><circle cx="16" cy="7" r=".7"/><circle cx="6" cy="14" r=".7"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18m6-18v18M3 9h18M3 15h18"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-9 9 9 5 9-5M3 17l9 5 9-5"/></symbol>
+
+      <symbol id="i-fill" viewBox="0 0 24 24"><path d="m9 3 10 10-8 8L1 11l8-8Z" fill="#d8ecff" stroke="#497fa9"/><path d="M4 8h14M8 2l4 4" stroke="#6f6f6f"/><path d="M20 14c-3 4-3 5-1 7 2 1 4-1 2-4Z" fill="#f4cf3c" stroke="#b69b29"/></symbol>
+      <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="10" cy="9" r="6" fill="#e8f8ff" stroke="#4c89b1"/><path d="m14 14 7 7" stroke="#b68c4b" stroke-width="4"/></symbol>
+      <symbol id="i-paste" viewBox="0 0 32 32"><path d="M5 5h20v24H5Z" fill="#edd295" stroke="#a78b47"/><path d="M10 3h10v5H10Z" fill="#d9dce0" stroke="#8b8e91"/><path d="M12 11h15v19H12Z" fill="#fff" stroke="#729ab9"/><path d="M15 16h9M15 20h9M15 24h7" stroke="#83b2d4"/></symbol>
+      <symbol id="i-cut" viewBox="0 0 24 24"><path d="m8 9 11 12M8 15 19 3" stroke="#89939b" stroke-width="2"/><circle cx="5" cy="7" r="3" fill="#bde4ff" stroke="#4081ae"/><circle cx="5" cy="17" r="3" fill="#bde4ff" stroke="#4081ae"/></symbol>
+      <symbol id="i-classiccopy" viewBox="0 0 24 24"><path d="M3 2h12v16H3Z" fill="#fff" stroke="#769cb7"/><path d="M9 7h12v15H9Z" fill="#eaf7ff" stroke="#6797ba"/><path d="M12 11h6M12 15h6M12 19h4" stroke="#83afd0"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="m4 16 13-13 4 4L8 20l-5 1Z" fill="#f4cc4c" stroke="#927f3f"/><path d="m17 3 2-2 4 4-2 2" fill="#e59496" stroke="#af6369"/><path d="m4 16 4 4-5 1Z" fill="#e9d7b0" stroke="#927f3f"/><path d="m3 21 2-1" stroke="#222"/></symbol>
+      <symbol id="i-brush" viewBox="0 0 32 32"><path d="m12 17 12-15 5 4-13 15Z" fill="#d5a364" stroke="#936b3b"/><path d="m11 16 6 5-4 5c-4 4-9 5-11 1 3 0 3-4 5-7Z" fill="#6b523d" stroke="#554130"/><path d="m11 16 6 5 3-4-6-5Z" fill="#d5e3ef" stroke="#718997"/></symbol>
+      <symbol id="i-classiceraser" viewBox="0 0 24 24"><path d="m12 3 9 6-9 13-9-6Z" fill="#f7b9c4" stroke="#b87783"/><path d="m3 16 5-7 9 6-5 7Z" fill="#eff7fc" stroke="#a4b6c4"/></symbol>
+      <symbol id="i-classicdropper" viewBox="0 0 24 24"><path d="m4 16 10-11 5 5L8 20l-5 1Z" fill="#f0faff" stroke="#6f98b5"/><path d="m14 4 4-3 5 5-4 4Z" fill="#5896bf" stroke="#467392"/><path d="m6 15 3 3" stroke="#70b9dc"/></symbol>
+      <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v16h16M2 6h16v16" stroke="#567b94" stroke-width="2"/></symbol>
+      <symbol id="i-resize" viewBox="0 0 24 24"><rect x="2" y="3" width="18" height="16" fill="#fff" stroke="#6392b5"/><path d="M9 12h13v9H9Z" fill="#c6e5fa" stroke="#6392b5"/><path d="M5 7h8m-3-3 3 3-3 3" stroke="#477ba1"/></symbol>
+      <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 8a8 8 0 1 1-1 9M3 3v6h6" stroke="#4e91c1" stroke-width="2"/><path d="M7 12h7v7H7Z" fill="#e6f2f9" stroke="#7d9cb1"/></symbol>
+      <symbol id="i-size" viewBox="0 0 32 32"><path d="M4 6h24" stroke="#273238" stroke-width="1"/><path d="M4 12h24" stroke="#273238" stroke-width="2"/><path d="M4 19h24" stroke="#273238" stroke-width="3"/><path d="M4 27h24" stroke="#273238" stroke-width="5"/></symbol>
+      <symbol id="i-righttriangle" viewBox="0 0 24 24"><path d="M4 3v18h17Z"/></symbol>
+      <symbol id="i-pentagon" viewBox="0 0 24 24"><path d="m12 2 10 8-4 12H6L2 10Z"/></symbol>
+      <symbol id="i-octagon" viewBox="0 0 24 24"><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8Z"/></symbol>
+      <symbol id="i-star4" viewBox="0 0 24 24"><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/></symbol>
+      <symbol id="i-star6" viewBox="0 0 24 24"><path d="m12 2 3 6h7l-4 5 4 7h-7l-3 3-3-3H2l4-7-4-5h7Z"/></symbol>
+      <symbol id="i-arrowright" viewBox="0 0 24 24"><path d="M2 8h11V3l9 9-9 9v-5H2Z"/></symbol>
+      <symbol id="i-arrowleft" viewBox="0 0 24 24"><path d="M22 8H11V3l-9 9 9 9v-5h11Z"/></symbol>
+      <symbol id="i-arrowup" viewBox="0 0 24 24"><path d="M8 22V11H3l9-9 9 9h-5v11Z"/></symbol>
+      <symbol id="i-arrowdown" viewBox="0 0 24 24"><path d="M8 2v11H3l9 9 9-9h-5V2Z"/></symbol>
+      <symbol id="i-lightning" viewBox="0 0 24 24"><path d="m13 2-9 11h7l-1 9 10-14h-8Z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21 3 12C-3 2 9-2 12 6c3-8 15-4 9 6Z"/></symbol>
+      <symbol id="i-speechoval" viewBox="0 0 24 24"><path d="M11 3c12 0 15 14 2 15l-6 4v-5C-3 14 0 3 11 3Z"/></symbol>
+    </defs>
+  </svg>
+
+
+  <div id="app">
+    <header class="paint-titlebar">
+      <svg class="app-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C1 3 0 17 8 21c4 2 8 0 6-3-2-2-1-4 2-4 9 0 6-11-4-11Z" fill="#f0d395" stroke="#ae8b47"/><circle cx="7" cy="8" r="1.8" fill="#f04346" stroke="none"/><circle cx="12" cy="6" r="1.8" fill="#ffd600" stroke="none"/><circle cx="17" cy="8" r="1.8" fill="#45ab59" stroke="none"/><circle cx="5" cy="13" r="1.8" fill="#4f9ed8" stroke="none"/><path d="m14 18 8-14" stroke="#6588a7" stroke-width="3"/></svg>
+      <nav class="quick-access" aria-label="快速访问工具栏">
+        <button class="icon-button" data-command="save-project" type="button" title="保存工程（Ctrl+S）" aria-label="保存工程"><svg class="save-icon"><use href="#i-save"/></svg></button>
+        <button id="undo" class="icon-button" type="button" title="撤销（Ctrl+Z）" aria-label="撤销"><svg class="undo-icon"><use href="#i-undo"/></svg></button>
+        <button id="redo" class="icon-button" type="button" title="重做（Ctrl+Y）" aria-label="重做"><svg class="undo-icon"><use href="#i-redo"/></svg></button>
+      </nav>
+      <span class="title-separator" aria-hidden="true"></span>
+      <label class="sr-only" for="document-name">文件名称</label><input id="document-name" value="未命名" autocomplete="off" spellcheck="false" title="点击修改文件名称" aria-label="文件名称"><span class="window-title-suffix">- 画图增强版</span>
+      <span id="save-status" class="save-state">本地自动保存</span>
+      <button id="fullscreen-toggle" class="icon-button title-fullscreen" type="button" title="切换全屏显示" aria-label="切换全屏显示"><svg><use href="#i-fit"/></svg></button>
+    </header>
+    <nav class="ribbon-tabs" aria-label="功能区标签">
+      <button type="button" data-ribbon-tab="file" class="ribbon-tab file-tab" title="打开文件菜单" aria-label="文件菜单" aria-expanded="false">文件</button>
+      <button type="button" data-ribbon-tab="home" class="ribbon-tab active" title="主页绘图工具" aria-label="主页" aria-selected="true">主页</button>
+      <button type="button" data-ribbon-tab="view" class="ribbon-tab" title="查看与缩放设置" aria-label="查看">查看</button>
+      <button type="button" data-ribbon-tab="enhance" class="ribbon-tab" title="精准绘图、箭头与竖排字体增强" aria-label="增强">增强</button>
+      <button class="ribbon-help" data-command="help-open" type="button" title="画图帮助" aria-label="画图帮助"><svg><use href="#i-help"/></svg></button>
+    </nav>
+    <div id="file-menu" class="file-menu" hidden>
+      <button id="new-document" type="button" title="新建空白画布（Ctrl+N）" aria-label="新建画布"><svg><use href="#i-plus"/></svg>新建</button>
+      <button id="open-image" type="button" title="打开 PNG、JPEG、WebP 或 BMP 图片" aria-label="打开图片"><svg><use href="#i-import"/></svg>打开图片</button>
+      <button id="import-project" type="button" title="打开可编辑的绘图工程" aria-label="打开工程"><svg><use href="#i-import"/></svg>打开工程</button>
+      <button id="save-project" type="button" title="保存可再次编辑的工程（Ctrl+S）" aria-label="保存工程"><svg class="save-icon"><use href="#i-save"/></svg>保存工程</button>
+      <button id="export-open" type="button" title="另存为 PNG 图片或 SVG 矢量图" aria-label="另存为图片"><svg><use href="#i-export"/></svg>另存为图片</button>
+      <div class="menu-separator"></div>
+      <button id="sample-open" type="button" title="打开丰富图形与文字示例" aria-label="打开示例"><svg><use href="#i-sample"/></svg>示例画板</button>
+      <button id="help-open" type="button" title="操作说明与快捷键" aria-label="打开帮助"><svg><use href="#i-help"/></svg>帮助</button>
+      <p>作品自动保存到当前浏览器</p>
+    </div>
+    <section class="paint-ribbon" aria-label="绘图功能区">
+      <div id="ribbon-home" class="ribbon-page">
+        <section class="ribbon-group clipboard-group" aria-label="剪贴板">
+          <div class="ribbon-group-content clipboard-content">
+            <button id="clipboard-paste" class="large-command" type="button" title="粘贴图形或剪贴板图片（Ctrl+V）" aria-label="粘贴"><svg><use href="#i-paste"/></svg><span>粘贴</span><span class="down-caret">▾</span></button>
+            <div class="small-command-column"><button id="clipboard-cut" class="small-command" type="button" title="剪切选中内容（Ctrl+X）" aria-label="剪切"><svg><use href="#i-cut"/></svg><span>剪切</span></button><button id="clipboard-copy" class="small-command" type="button" title="复制选中内容（Ctrl+C）" aria-label="复制"><svg><use href="#i-classiccopy"/></svg><span>复制</span></button><button id="paste-image" class="small-command" type="button" title="从本地文件粘贴图片" aria-label="从文件粘贴"><svg><use href="#i-sample"/></svg><span>粘贴自</span></button></div>
+          </div><div class="ribbon-group-label">剪贴板</div>
+        </section>
+        <section class="ribbon-group image-group" aria-label="图像">
+          <div class="ribbon-group-content image-content">
+            <button type="button" data-tool="select" class="tool-button large-command select-command active" title="选择与移动图形（V），拖动空白处框选" aria-label="选择工具"><svg><use href="#i-rect"/></svg><span>选择</span><span class="down-caret">▾</span></button>
+            <div class="small-command-column"><button id="crop-selection" class="small-command" type="button" title="将画布裁剪到选中区域" aria-label="裁剪"><svg><use href="#i-crop"/></svg><span>裁剪</span></button><button id="resize-open" class="small-command" type="button" title="调整图像大小" aria-label="重新调整大小"><svg><use href="#i-resize"/></svg><span>重新调整大小</span></button><label class="small-command rotate-command"><svg><use href="#i-rotate"/></svg><select id="rotate-direction" title="旋转或翻转整幅图像" aria-label="旋转"><option value="none">旋转 ▾</option><option value="right">向右旋转 90°</option><option value="left">向左旋转 90°</option><option value="180">旋转 180°</option><option value="flip-h">水平翻转</option><option value="flip-v">垂直翻转</option></select></label></div>
+          </div><div class="ribbon-group-label">图像</div>
+        </section>
+        <section class="ribbon-group tools-group" aria-label="工具"><div class="ribbon-group-content classic-tools"><button type="button" data-tool="freehand" class="tool-button" title="铅笔（B）" aria-label="铅笔（B）工具"><svg><use href="#i-pencil"/></svg></button>
+<button type="button" data-tool="fill" class="tool-button" title="用颜色填充（F）" aria-label="用颜色填充（F）工具"><svg><use href="#i-fill"/></svg></button>
+<button type="button" data-tool="text" class="tool-button" title="文字（T）" aria-label="文字（T）工具"><svg><use href="#i-text"/></svg></button>
+<button type="button" data-tool="eraser" class="tool-button" title="精细橡皮（E）" aria-label="精细橡皮（E）工具"><svg><use href="#i-classiceraser"/></svg></button>
+<button type="button" data-tool="eyedropper" class="tool-button" title="颜色选取器（I）" aria-label="颜色选取器（I）工具"><svg><use href="#i-classicdropper"/></svg></button>
+<button type="button" data-tool="zoom" class="tool-button" title="放大镜（Z）" aria-label="放大镜（Z）工具"><svg><use href="#i-zoom"/></svg></button></div><div class="ribbon-group-label">工具</div></section>
+        <section class="ribbon-group brushes-group" aria-label="画笔"><div class="ribbon-group-content brush-content"><button class="large-command" data-command="brush-tool" type="button" title="使用画笔" aria-label="使用画笔"><svg><use href="#i-brush"/></svg><span>画笔</span></button><select id="brush-style" title="选择画笔笔触" aria-label="画笔类型"><option value="pencil">铅笔</option><option value="brush" selected>画笔</option><option value="marker">荧光笔</option></select></div><div class="ribbon-group-label">画笔</div></section>
+        <section class="ribbon-group shapes-group" aria-label="形状"><div class="ribbon-group-content shapes-content"><div class="classic-shapes" aria-label="形状库"><button type="button" data-tool="line" class="tool-button" title="直线" aria-label="直线工具"><svg><use href="#i-line"/></svg></button>
+<button type="button" data-tool="curve" class="tool-button" title="曲线" aria-label="曲线工具"><svg><use href="#i-curve"/></svg></button>
+<button type="button" data-tool="ellipse" class="tool-button" title="椭圆" aria-label="椭圆工具"><svg><use href="#i-ellipse"/></svg></button>
+<button type="button" data-tool="rect" class="tool-button" title="矩形" aria-label="矩形工具"><svg><use href="#i-rect"/></svg></button>
+<button type="button" data-tool="roundrect" class="tool-button" title="圆角矩形" aria-label="圆角矩形工具"><svg><use href="#i-roundrect"/></svg></button>
+<button type="button" data-tool="polyline" class="tool-button" title="多边形 / 折线" aria-label="多边形 / 折线工具"><svg><use href="#i-polyline"/></svg></button>
+<button type="button" data-tool="triangle" class="tool-button" title="三角形" aria-label="三角形工具"><svg><use href="#i-triangle"/></svg></button>
+<button type="button" data-tool="righttriangle" class="tool-button" title="直角三角形" aria-label="直角三角形工具"><svg><use href="#i-righttriangle"/></svg></button>
+<button type="button" data-tool="diamond" class="tool-button" title="菱形" aria-label="菱形工具"><svg><use href="#i-diamond"/></svg></button>
+<button type="button" data-tool="pentagon" class="tool-button" title="五边形" aria-label="五边形工具"><svg><use href="#i-pentagon"/></svg></button>
+<button type="button" data-tool="hexagon" class="tool-button" title="六边形" aria-label="六边形工具"><svg><use href="#i-hexagon"/></svg></button>
+<button type="button" data-tool="octagon" class="tool-button" title="八边形" aria-label="八边形工具"><svg><use href="#i-octagon"/></svg></button>
+<button type="button" data-tool="arrowright" class="tool-button" title="向右箭头" aria-label="向右箭头工具"><svg><use href="#i-arrowright"/></svg></button>
+<button type="button" data-tool="arrowleft" class="tool-button" title="向左箭头" aria-label="向左箭头工具"><svg><use href="#i-arrowleft"/></svg></button>
+<button type="button" data-tool="arrowup" class="tool-button" title="向上箭头" aria-label="向上箭头工具"><svg><use href="#i-arrowup"/></svg></button>
+<button type="button" data-tool="arrowdown" class="tool-button" title="向下箭头" aria-label="向下箭头工具"><svg><use href="#i-arrowdown"/></svg></button>
+<button type="button" data-tool="star4" class="tool-button" title="四角星" aria-label="四角星工具"><svg><use href="#i-star4"/></svg></button>
+<button type="button" data-tool="star" class="tool-button" title="五角星" aria-label="五角星工具"><svg><use href="#i-star"/></svg></button>
+<button type="button" data-tool="star6" class="tool-button" title="六角星" aria-label="六角星工具"><svg><use href="#i-star6"/></svg></button>
+<button type="button" data-tool="speech" class="tool-button" title="矩形标注" aria-label="矩形标注工具"><svg><use href="#i-speech"/></svg></button>
+<button type="button" data-tool="speechoval" class="tool-button" title="椭圆标注" aria-label="椭圆标注工具"><svg><use href="#i-speechoval"/></svg></button>
+<button type="button" data-tool="cloud" class="tool-button" title="云形标注" aria-label="云形标注工具"><svg><use href="#i-cloud"/></svg></button>
+<button type="button" data-tool="heart" class="tool-button" title="心形" aria-label="心形工具"><svg><use href="#i-heart"/></svg></button>
+<button type="button" data-tool="lightning" class="tool-button" title="闪电" aria-label="闪电工具"><svg><use href="#i-lightning"/></svg></button>
+<button type="button" data-tool="arrow" class="tool-button" title="线条箭头" aria-label="线条箭头工具"><svg><use href="#i-arrow"/></svg></button>
+<button type="button" data-tool="doublearrow" class="tool-button" title="双向线条箭头" aria-label="双向线条箭头工具"><svg><use href="#i-doublearrow"/></svg></button>
+<button type="button" data-tool="arc" class="tool-button" title="圆弧" aria-label="圆弧工具"><svg><use href="#i-arc"/></svg></button>
+<button type="button" data-tool="frame" class="tool-button" title="框形" aria-label="框形工具"><svg><use href="#i-frame"/></svg></button>
+<button type="button" data-tool="parallelogram" class="tool-button" title="平行四边形" aria-label="平行四边形工具"><svg><use href="#i-parallelogram"/></svg></button>
+<button type="button" data-tool="trapezoid" class="tool-button" title="梯形" aria-label="梯形工具"><svg><use href="#i-trapezoid"/></svg></button>
+<button type="button" data-tool="cylinder" class="tool-button" title="圆柱体" aria-label="圆柱体工具"><svg><use href="#i-cylinder"/></svg></button></div><div class="shape-options"><label><svg><use href="#i-pen"/></svg><select id="outline-mode" title="形状轮廓" aria-label="形状轮廓"><option value="solid">轮廓：实色</option><option value="none">无轮廓</option></select></label><label><svg><use href="#i-fill"/></svg><select id="fill-mode" title="形状填充" aria-label="形状填充"><option value="none">填充：无</option><option value="solid">填充：实色</option></select></label></div></div><div class="ribbon-group-label">形状</div></section>
+        <section class="ribbon-group size-group" aria-label="粗细"><div class="ribbon-group-content size-content"><svg class="size-icon"><use href="#i-size"/></svg><label class="sr-only" for="stroke-width">线条粗细</label><div class="size-input"><input id="stroke-width" type="number" min="0.1" max="100" step="0.1" value="2" title="线条粗细，0.1 至 100 像素" aria-label="线条粗细"><span>px</span></div></div><div class="ribbon-group-label">粗细</div></section>
+        <section class="ribbon-group colors-group" aria-label="颜色"><div class="ribbon-group-content colors-content"><button id="primary-color" class="color-command active" type="button" title="颜色 1：前景色 / 描边" aria-label="选择颜色 1"><span id="primary-color-chip" class="large-color-chip" style="background:#000000"></span><span>颜色 1</span></button><button id="secondary-color" class="color-command" type="button" title="颜色 2：背景色 / 填充" aria-label="选择颜色 2"><span id="secondary-color-chip" class="large-color-chip" style="background:#ffffff"></span><span>颜色 2</span></button><div id="color-presets" class="classic-palette" aria-label="经典颜色调色板"><button type="button" class="color-swatch" data-color="#000000" style="--swatch:#000000" title="黑色 #000000" aria-label="黑色 #000000"></button><button type="button" class="color-swatch" data-color="#7F7F7F" style="--swatch:#7F7F7F" title="灰色 #7F7F7F" aria-label="灰色 #7F7F7F"></button><button type="button" class="color-swatch" data-color="#880015" style="--swatch:#880015" title="深红 #880015" aria-label="深红 #880015"></button><button type="button" class="color-swatch" data-color="#ED1C24" style="--swatch:#ED1C24" title="红色 #ED1C24" aria-label="红色 #ED1C24"></button><button type="button" class="color-swatch" data-color="#FF7F27" style="--swatch:#FF7F27" title="橙色 #FF7F27" aria-label="橙色 #FF7F27"></button><button type="button" class="color-swatch" data-color="#FFF200" style="--swatch:#FFF200" title="黄色 #FFF200" aria-label="黄色 #FFF200"></button><button type="button" class="color-swatch" data-color="#22B14C" style="--swatch:#22B14C" title="绿色 #22B14C" aria-label="绿色 #22B14C"></button><button type="button" class="color-swatch" data-color="#00A2E8" style="--swatch:#00A2E8" title="青蓝 #00A2E8" aria-label="青蓝 #00A2E8"></button><button type="button" class="color-swatch" data-color="#3F48CC" style="--swatch:#3F48CC" title="靛蓝 #3F48CC" aria-label="靛蓝 #3F48CC"></button><button type="button" class="color-swatch" data-color="#A349A4" style="--swatch:#A349A4" title="紫色 #A349A4" aria-label="紫色 #A349A4"></button><button type="button" class="color-swatch" data-color="#FFFFFF" style="--swatch:#FFFFFF" title="白色 #FFFFFF" aria-label="白色 #FFFFFF"></button><button type="button" class="color-swatch" data-color="#C3C3C3" style="--swatch:#C3C3C3" title="浅灰 #C3C3C3" aria-label="浅灰 #C3C3C3"></button><button type="button" class="color-swatch" data-color="#B97A57" style="--swatch:#B97A57" title="棕色 #B97A57" aria-label="棕色 #B97A57"></button><button type="button" class="color-swatch" data-color="#FFAEC9" style="--swatch:#FFAEC9" title="粉红 #FFAEC9" aria-label="粉红 #FFAEC9"></button><button type="button" class="color-swatch" data-color="#FFC90E" style="--swatch:#FFC90E" title="金色 #FFC90E" aria-label="金色 #FFC90E"></button><button type="button" class="color-swatch" data-color="#EFE4B0" style="--swatch:#EFE4B0" title="浅黄 #EFE4B0" aria-label="浅黄 #EFE4B0"></button><button type="button" class="color-swatch" data-color="#B5E61D" style="--swatch:#B5E61D" title="浅绿 #B5E61D" aria-label="浅绿 #B5E61D"></button><button type="button" class="color-swatch" data-color="#99D9EA" style="--swatch:#99D9EA" title="浅蓝 #99D9EA" aria-label="浅蓝 #99D9EA"></button><button type="button" class="color-swatch" data-color="#7092BE" style="--swatch:#7092BE" title="蓝灰 #7092BE" aria-label="蓝灰 #7092BE"></button><button type="button" class="color-swatch" data-color="#C8BFE7" style="--swatch:#C8BFE7" title="浅紫 #C8BFE7" aria-label="浅紫 #C8BFE7"></button><button type="button" class="color-swatch" data-color="#1F497D" style="--swatch:#1F497D" title="深蓝 #1F497D" aria-label="深蓝 #1F497D"></button><button type="button" class="color-swatch" data-color="#00B050" style="--swatch:#00B050" title="翠绿 #00B050" aria-label="翠绿 #00B050"></button><button type="button" class="color-swatch" data-color="#40E0D0" style="--swatch:#40E0D0" title="青绿 #40E0D0" aria-label="青绿 #40E0D0"></button><button type="button" class="color-swatch" data-color="#FF00FF" style="--swatch:#FF00FF" title="品红 #FF00FF" aria-label="品红 #FF00FF"></button><button type="button" class="color-swatch" data-color="#FF4F81" style="--swatch:#FF4F81" title="玫红 #FF4F81" aria-label="玫红 #FF4F81"></button><button type="button" class="color-swatch" data-color="#800000" style="--swatch:#800000" title="栗色 #800000" aria-label="栗色 #800000"></button><button type="button" class="color-swatch" data-color="#808000" style="--swatch:#808000" title="橄榄 #808000" aria-label="橄榄 #808000"></button><button type="button" class="color-swatch" data-color="#008080" style="--swatch:#008080" title="深青 #008080" aria-label="深青 #008080"></button><button type="button" class="color-swatch" data-color="#804000" style="--swatch:#804000" title="褐色 #804000" aria-label="褐色 #804000"></button><button type="button" class="color-swatch" data-color="#6F2DA8" style="--swatch:#6F2DA8" title="深紫 #6F2DA8" aria-label="深紫 #6F2DA8"></button></div><button id="edit-colors-open" class="large-command edit-colors-command" type="button" title="编辑颜色，精准输入 HEX 与 RGB 数值" aria-label="编辑颜色"><span class="edit-colors-icon" aria-hidden="true"></span><span>编辑<br>颜色</span></button></div><div class="ribbon-group-label">颜色</div></section>
+      </div>
+      <div id="ribbon-view" class="ribbon-page" hidden>
+        <section class="ribbon-group view-zoom-group" aria-label="缩放"><div class="ribbon-group-content view-zoom-buttons"><button class="large-command" data-command="zoom-in" type="button" title="放大画布" aria-label="放大"><svg><use href="#i-zoom"/></svg><span>放大</span></button><button class="large-command" data-command="zoom-out" type="button" title="缩小画布" aria-label="缩小"><svg><use href="#i-minus"/></svg><span>缩小</span></button><button class="large-command" data-command="actual-size" type="button" title="以实际像素 100% 显示" aria-label="100% 显示"><svg><use href="#i-fit"/></svg><span>100%</span></button><button class="large-command" data-command="zoom-fit" type="button" title="让整个画布适合窗口" aria-label="适合窗口"><svg><use href="#i-fit"/></svg><span>适合窗口</span></button></div><div class="ribbon-group-label">缩放</div></section>
+        <section class="ribbon-group view-display-group" aria-label="显示或隐藏"><div class="ribbon-group-content view-checks"><label class="check-label"><input id="rulers-toggle" type="checkbox" title="显示标尺" aria-label="显示标尺"><span>标尺</span></label><label class="check-label"><input id="grid-toggle" type="checkbox" title="显示网格线" aria-label="显示网格线"><span>网格线</span></label><label class="check-label"><input id="status-toggle" type="checkbox" checked title="显示状态栏" aria-label="显示状态栏"><span>状态栏</span></label></div><div class="ribbon-group-label">显示或隐藏</div></section>
+        <section class="ribbon-group" aria-label="视图"><div class="ribbon-group-content view-zoom-buttons"><button class="large-command" data-command="fullscreen-toggle" type="button" title="全屏显示绘图软件" aria-label="全屏"><svg><use href="#i-fit"/></svg><span>全屏</span></button><button type="button" data-tool="hand" class="tool-button large-command" title="平移画布（H / 按住空格）" aria-label="平移工具"><svg><use href="#i-hand"/></svg><span>平移</span></button></div><div class="ribbon-group-label">显示</div></section>
+      </div>
+      <div id="ribbon-enhance" class="ribbon-page" hidden>
+        <section class="ribbon-group enhance-start" aria-label="专业增强"><div class="ribbon-group-content view-zoom-buttons"><button id="enhancements-toggle" class="large-command" type="button" title="显示或隐藏精确属性、文字设置和图层面板" aria-label="增强属性面板" aria-expanded="false"><svg><use href="#i-layers"/></svg><span>属性与图层</span></button><button id="select-all" class="large-command" type="button" title="选择画布上的全部图形（Ctrl+A）" aria-label="选择全部"><svg><use href="#i-select"/></svg><span>选择全部</span></button></div><div class="ribbon-group-label">专业增强</div></section>
+        <section class="ribbon-group" aria-label="精确绘图"><div class="ribbon-group-content enhancement-description"><strong>精确到每一个像素</strong><span>HEX / RGB 颜色 · 0.1 px 线宽 · 1 px 橡皮</span><span>实线 / 虚线 / 点线 · 可调曲线 · 多种箭头</span></div><div class="ribbon-group-label">精确绘图</div></section>
+        <section class="ribbon-group" aria-label="文字与输出"><div class="ribbon-group-content enhancement-description"><strong>中文竖排与高清输出</strong><span>字体 / 字号 / 行距 · 从右至左竖排</span><span>可编辑工程 · PNG 高清图片 · SVG 矢量图</span></div><div class="ribbon-group-label">文字与输出</div></section>
+        <section class="ribbon-group" aria-label="辅助"><div class="ribbon-group-content view-checks"><label class="check-label"><input id="snap-toggle" type="checkbox" title="绘制与移动时吸附到 10 像素网格" aria-label="吸附网格"><span>吸附到网格</span></label><button class="small-command" data-command="edit-colors-open" type="button" title="打开精确颜色编辑器" aria-label="精确颜色编辑器"><svg><use href="#i-palette"/></svg><span>精确颜色编辑</span></button></div><div class="ribbon-group-label">辅助</div></section>
+      </div>
+    </section>
+    <input id="file-input" class="sr-only" type="file" accept=".json,.graphite,application/json" aria-label="选择工程文件">
+    <input id="image-input" class="sr-only" type="file" accept=".png,.jpg,.jpeg,.webp,.bmp,.gif,image/png,image/jpeg,image/webp,image/bmp,image/gif" aria-label="选择图片文件">
+    <input id="inspector-mobile-toggle" class="sr-only" type="checkbox" aria-label="显示或隐藏图形属性" title="显示或隐藏图形属性">
+    <div class="sr-only" aria-hidden="true"><span id="tool-label">铅笔</span><span id="tool-shortcut">B</span><span id="tool-hint">拖动进行绘图</span></div>
+    <main class="workspace">
+      <section class="canvas-workspace" aria-label="绘图工作区">
+        <div id="viewport" tabindex="0" aria-label="画布，使用鼠标绘图；按住空格拖动平移，滚轮缩放">
+          <div class="ruler-corner" aria-hidden="true" hidden><svg><use href="#i-grid"/></svg></div>
+          <canvas id="ruler-top" class="ruler ruler-top" aria-hidden="true" hidden></canvas><canvas id="ruler-left" class="ruler ruler-left" aria-hidden="true" hidden></canvas>
+          <div id="canvas-container">
+            <svg id="drawing-svg" xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" aria-label="绘图画布"><defs id="canvas-defs"></defs><rect id="paper-background" x="0" y="0" width="900" height="520" fill="#ffffff"></rect><g id="grid-layer"></g><g id="objects-layer"></g><g id="selection-layer"></g><g id="preview-layer"></g></svg>
+            <button id="canvas-resize-right" class="canvas-size-handle handle-right" type="button" title="拖动调整画布宽度" aria-label="拖动调整画布宽度" tabindex="-1"></button><button id="canvas-resize-bottom" class="canvas-size-handle handle-bottom" type="button" title="拖动调整画布高度" aria-label="拖动调整画布高度" tabindex="-1"></button><button id="canvas-resize-corner" class="canvas-size-handle handle-corner" type="button" title="拖动调整画布尺寸" aria-label="拖动调整画布尺寸" tabindex="-1"></button>
+          </div><div id="eraser-cursor" hidden aria-hidden="true"></div>
+        </div>
+      </section>
+      <aside id="enhancements-panel" class="inspector" aria-label="增强绘图属性与图层" hidden>
+        <div class="inspector-heading"><span>增强属性</span><span id="selection-label" class="selection-badge">新建图形</span></div>
+        <div class="inspector-scroll">
+          <section class="property-section" aria-labelledby="appearance-heading">
+            <h2 id="appearance-heading">线条与外观</h2>
+            <div class="range-heading"><label for="opacity">不透明度</label><output id="opacity-value" for="opacity">100%</output></div>
+            <input id="opacity" type="range" min="0" max="100" value="100" title="图形不透明度" aria-label="图形不透明度">
+            <div class="field-grid two-col">
+
+              <label class="stacked-field" for="line-style"><span>线条样式</span><select id="line-style" title="实线、虚线或点线" aria-label="线条样式"><option value="solid">实线 ───</option><option value="dashed">虚线 ┄┄┄</option><option value="dotted">点线 ····</option></select></label>
+            </div>
+            <div class="field-grid two-col arrow-fields">
+              <label class="stacked-field" for="start-arrow"><span>起点箭头</span><select id="start-arrow" title="线条起点装饰" aria-label="起点箭头"><option value="none">无</option><option value="arrow">开放箭头</option><option value="triangle">实心箭头</option><option value="circle">圆点</option></select></label>
+              <label class="stacked-field" for="end-arrow"><span>终点箭头</span><select id="end-arrow" title="线条终点装饰" aria-label="终点箭头"><option value="none">无</option><option value="arrow">开放箭头</option><option value="triangle">实心箭头</option><option value="circle">圆点</option></select></label>
+            </div>
+          </section>
+
+          <section id="geometry-panel" class="property-section" aria-labelledby="geometry-heading">
+            <h2 id="geometry-heading"><svg><use href="#i-rect"/></svg>位置与尺寸<span class="section-tag">px</span></h2>
+            <div class="field-grid two-col geometry-fields">
+              <label class="number-field"><span>X</span><input id="object-x" type="number" step="0.1" value="0" title="水平位置" aria-label="图形水平位置"></label>
+              <label class="number-field"><span>Y</span><input id="object-y" type="number" step="0.1" value="0" title="垂直位置" aria-label="图形垂直位置"></label>
+              <label class="number-field"><span>W</span><input id="object-w" type="number" min="0.1" step="0.1" value="0" title="图形宽度" aria-label="图形宽度"></label>
+              <label class="number-field"><span>H</span><input id="object-h" type="number" min="0.1" step="0.1" value="0" title="图形高度" aria-label="图形高度"></label>
+            </div>
+            <label class="rotation-field"><span>旋转角度</span><span class="input-unit"><input id="object-rotation" type="number" step="1" value="0" title="图形旋转角度" aria-label="旋转角度"><span>°</span></span></label>
+          </section>
+
+          <section id="text-panel" class="property-section" aria-labelledby="text-heading" hidden>
+            <h2 id="text-heading"><svg><use href="#i-text"/></svg>文字设置</h2>
+            <label class="stacked-field" for="text-content"><span>文字内容</span><textarea id="text-content" rows="3" placeholder="输入文字内容…" title="修改选中的文字" aria-label="文字内容"></textarea></label>
+            <div class="field-grid two-col">
+              <label class="stacked-field" for="font-family"><span>字体</span><select id="font-family" title="文字字体" aria-label="文字字体"><option value="Microsoft YaHei">微软雅黑</option><option value="SimSun">宋体</option><option value="KaiTi">楷体</option><option value="Arial">Arial</option><option value="Georgia">Georgia</option></select></label>
+              <label class="stacked-field" for="font-size"><span>字号</span><span class="input-unit"><input id="font-size" type="number" min="6" max="500" step="1" value="32" title="文字字号，6 至 500 像素" aria-label="文字字号"><span>px</span></span></label>
+              <label class="stacked-field" for="text-direction"><span>排版方向</span><select id="text-direction" title="选择中文横排或竖排" aria-label="文字排版方向"><option value="horizontal">横排文字</option><option value="vertical">竖排文字</option></select></label>
+              <label class="stacked-field" for="text-align"><span>对齐</span><select id="text-align" title="文字对齐方式" aria-label="文字对齐方式"><option value="left">左对齐</option><option value="center">居中</option><option value="right">右对齐</option></select></label>
+            </div>
+            <div class="text-extra-row"><label class="check-label"><input id="font-bold" type="checkbox" title="加粗文字" aria-label="加粗文字"><span>加粗</span></label><label class="line-height-field" for="line-height"><span>行距</span><input id="line-height" type="number" min="0.8" max="4" step="0.1" value="1.4" title="行距倍数，0.8 至 4 倍" aria-label="文字行距倍数"></label></div>
+          </section>
+
+          <section id="eraser-panel" class="property-section" aria-labelledby="eraser-heading" hidden>
+            <h2 id="eraser-heading"><svg><use href="#i-eraser"/></svg>精细橡皮</h2>
+            <div class="range-heading"><label for="eraser-size">橡皮直径</label><output id="eraser-size-value" for="eraser-size">12 px</output></div>
+            <input id="eraser-size" type="range" min="1" max="100" value="12" title="橡皮直径，可精细至 1 像素" aria-label="橡皮直径">
+            <p class="field-note">放大画板，配合小直径橡皮，细致处理边角。</p>
+          </section>
+
+          <section class="property-section layers-section" aria-labelledby="layers-heading">
+            <h2 id="layers-heading"><svg><use href="#i-layers"/></svg>图层<span class="section-tag">上方置顶</span></h2>
+            <div class="layer-toolbar" role="group" aria-label="图层操作">
+              <button id="bring-forward" class="icon-button" type="button" title="上移一层" aria-label="上移一层"><svg><use href="#i-up"/></svg></button>
+              <button id="send-backward" class="icon-button" type="button" title="下移一层" aria-label="下移一层"><svg><use href="#i-down"/></svg></button>
+              <span class="toolbar-spacer"></span>
+              <button id="duplicate-object" class="icon-button" type="button" title="复制选中的图形（Ctrl+D）" aria-label="复制图形"><svg><use href="#i-copy"/></svg></button>
+              <button id="delete-object" class="icon-button danger-button" type="button" title="删除选中的图形（Delete）" aria-label="删除图形"><svg><use href="#i-trash"/></svg></button>
+            </div>
+            <div id="layers-list" class="layers-list" aria-label="图形图层列表"><div class="layers-empty">画板上的图形会显示在这里</div></div>
+          </section>
+
+          <details class="canvas-settings" open>
+            <summary><span>画板设置</span><svg><use href="#i-chevron"/></svg></summary>
+            <div class="canvas-settings-content">
+              <div class="field-grid two-col">
+                <label class="stacked-field" for="canvas-width"><span>宽度</span><span class="input-unit"><input id="canvas-width" type="number" min="1" max="12000" step="1" value="900" title="画板宽度，1 至 12000 像素" aria-label="画板宽度"><span>px</span></span></label>
+                <label class="stacked-field" for="canvas-height"><span>高度</span><span class="input-unit"><input id="canvas-height" type="number" min="1" max="12000" step="1" value="520" title="画板高度，1 至 12000 像素" aria-label="画板高度"><span>px</span></span></label>
+              </div>
+              <div class="canvas-color-row"><label for="canvas-background">背景颜色</label><input id="canvas-background" type="color" value="#ffffff" title="画板背景颜色" aria-label="画板背景颜色"><button id="canvas-apply" class="secondary-button" type="button" title="应用画板尺寸与背景设置" aria-label="应用画板设置">应用设置</button></div>
+            </div>
+          </details>
+        </div>
+      </aside>
+    </main>
+    <footer class="status-bar" aria-label="状态栏">
+      <div class="status-coordinates"><svg><use href="#i-select"/></svg><span id="coordinates">X: — &nbsp; Y: —</span></div>
+      <div class="status-selection"><svg><use href="#i-rect"/></svg><span id="selection-size-status">—</span></div>
+      <div class="status-canvas"><svg><use href="#i-resize"/></svg><span id="canvas-size-status">900 × 520 像素</span></div>
+      <div class="status-message-cell"><span id="status-message">准备就绪</span><span id="object-count" class="sr-only">0 个图形</span></div>
+      <div class="view-controls"><label class="sr-only" for="zoom-select">画布缩放比例</label><select id="zoom-select" title="画布缩放比例" aria-label="画布缩放比例"><option value="10">10%</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100" selected>100%</option><option value="150">150%</option><option value="200">200%</option><option value="400">400%</option><option value="800">800%</option></select><button id="zoom-out" class="icon-button zoom-circle" type="button" title="缩小画布" aria-label="缩小画布"><svg><use href="#i-minus"/></svg></button><label class="sr-only" for="zoom-slider">缩放滑块</label><input id="zoom-slider" type="range" min="10" max="800" step="10" value="100" title="拖动改变画布缩放比例" aria-label="画布缩放滑块"><button id="zoom-in" class="icon-button zoom-circle" type="button" title="放大画布" aria-label="放大画布"><svg><use href="#i-plus"/></svg></button><button id="zoom-fit" class="icon-button small-icon" type="button" title="画布适合窗口（Ctrl+0）" aria-label="画布适合窗口"><svg><use href="#i-fit"/></svg></button></div>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <dialog id="colors-dialog" class="studio-dialog colors-dialog"><div class="dialog-heading"><h2>编辑颜色</h2><button id="colors-close" class="icon-button" type="button" title="关闭颜色编辑器" aria-label="关闭颜色编辑器"><svg><use href="#i-close"/></svg></button></div><p class="dialog-description">使用精确 HEX 颜色或 0–255 的 RGB 通道数值。</p>
+            <div class="color-row">
+              <label for="stroke-color" class="field-label">描边</label>
+              <div class="color-input-group"><input id="stroke-picker" type="color" value="#334155" title="选择描边颜色" aria-label="描边颜色选择器"><input id="stroke-color" class="hex-input" type="text" value="#334155" maxlength="9" spellcheck="false" title="输入精确 HEX 描边颜色，如 #334155" aria-label="描边 HEX 颜色"><button id="stroke-none" class="color-none-button" type="button" title="无描边" aria-label="设置无描边"><span></span></button></div>
+            </div>
+            <div class="color-row">
+              <label for="fill-color" class="field-label">填充</label>
+              <div class="color-input-group"><input id="fill-picker" type="color" value="#dbeafe" title="选择填充颜色" aria-label="填充颜色选择器"><input id="fill-color" class="hex-input" type="text" value="#DBEAFE" maxlength="9" spellcheck="false" title="输入精确 HEX 填充颜色，如 #DBEAFE" aria-label="填充 HEX 颜色"><button id="fill-none" class="color-none-button" type="button" title="无填充 / 透明填充" aria-label="设置无填充"><span></span></button></div>
+            </div>
+            <div class="rgb-heading"><span>RGB 精确输入</span><label class="sr-only" for="color-target">颜色编辑目标</label><select id="color-target" title="RGB 数值应用到描边或填充" aria-label="颜色编辑目标"><option value="stroke">描边</option><option value="fill">填充</option></select></div>
+            <div class="rgb-grid">
+              <label class="number-field"><span>R</span><input id="color-r" type="number" min="0" max="255" value="51" title="红色通道，0 至 255" aria-label="红色通道"></label>
+              <label class="number-field"><span>G</span><input id="color-g" type="number" min="0" max="255" value="65" title="绿色通道，0 至 255" aria-label="绿色通道"></label>
+              <label class="number-field"><span>B</span><input id="color-b" type="number" min="0" max="255" value="85" title="蓝色通道，0 至 255" aria-label="蓝色通道"></label>
+            </div>
+
+  </dialog>
+  <dialog id="resize-dialog" class="studio-dialog resize-dialog"><div class="dialog-heading"><h2>重新调整大小</h2><button id="resize-cancel" class="icon-button" type="button" title="取消调整尺寸" aria-label="取消调整尺寸"><svg><use href="#i-close"/></svg></button></div><label class="stacked-field" for="resize-mode"><span>依据</span><select id="resize-mode" title="按像素或百分比调整大小" aria-label="尺寸单位"><option value="pixels">像素</option><option value="percent">百分比</option></select></label><div class="field-grid two-col"><label class="stacked-field" for="resize-width"><span>水平</span><input id="resize-width" type="number" min="1" max="12000" value="900" title="水平尺寸" aria-label="水平尺寸"></label><label class="stacked-field" for="resize-height"><span>垂直</span><input id="resize-height" type="number" min="1" max="12000" value="520" title="垂直尺寸" aria-label="垂直尺寸"></label></div><label class="check-label resize-ratio-label"><input id="resize-keep-ratio" type="checkbox" checked title="保持纵横比" aria-label="保持纵横比"><span>保持纵横比</span></label><button id="resize-confirm" class="primary-button dialog-primary" type="button" title="应用调整后的尺寸" aria-label="确认调整尺寸">确定</button></dialog>
+  <dialog id="export-dialog" class="studio-dialog export-dialog">
+    <div class="dialog-heading"><div><h2>导出作品</h2></div><button id="export-cancel" class="icon-button" type="button" title="关闭导出窗口" aria-label="关闭导出窗口"><svg><use href="#i-close"/></svg></button></div>
+    <p class="dialog-description">为分享、印刷或进一步编辑，选择适合的格式。</p>
+    <label class="stacked-field" for="export-format"><span>文件格式</span><select id="export-format" title="选择导出格式" aria-label="导出格式"><option value="png">PNG · 高清图片</option><option value="svg">SVG · 可缩放矢量图</option></select></label>
+    <label class="stacked-field" for="export-scale"><span>导出精度</span><select id="export-scale" title="选择 PNG 输出倍率" aria-label="导出精度"><option value="1">1× · 原始尺寸</option><option value="2" selected>2× · 高清尺寸</option><option value="4">4× · 超高清尺寸</option></select></label>
+    <label class="check-label export-transparent-label"><input id="export-transparent" type="checkbox" title="导出透明背景" aria-label="导出透明背景"><span>透明背景</span><span class="field-note">隐藏画板底色</span></label>
+    <div class="export-note"><svg><use href="#i-check"/></svg><span>图形与文字保持精确，导出不包含网格和辅助线。</span></div>
+    <button id="export-confirm" class="primary-button dialog-primary" type="button" title="下载导出文件" aria-label="下载作品"><svg><use href="#i-export"/></svg>导出并下载</button>
+  </dialog>
+
+  <dialog id="text-dialog" class="studio-dialog text-dialog">
+    <div class="dialog-heading"><div><h2>添加文字</h2></div><button id="text-cancel" class="icon-button" type="button" title="取消添加文字" aria-label="取消添加文字"><svg><use href="#i-close"/></svg></button></div>
+    <p class="dialog-description">输入多行内容，中文横排与竖排都可以轻松完成。</p>
+    <label class="sr-only" for="text-input">要添加的文字</label><textarea id="text-input" rows="5" placeholder="在这里写下你的文字…" title="输入要添加的文字，支持换行" aria-label="要添加的文字"></textarea>
+    <label class="check-label text-vertical-label"><input id="text-vertical" type="checkbox" title="使用中文竖排" aria-label="使用中文竖排"><span>竖排文字</span><span class="field-note">从上至下，列从右至左</span></label>
+    <button id="text-confirm" class="primary-button dialog-primary" type="button" title="将文字添加到画板" aria-label="添加文字到画板"><svg><use href="#i-plus"/></svg>添加到画板</button>
+  </dialog>
+
+  <dialog id="help-dialog" class="studio-dialog help-dialog">
+    <div class="dialog-heading"><div><h2>画图增强版帮助</h2></div><button id="help-close" class="icon-button" type="button" title="关闭操作说明" aria-label="关闭操作说明"><svg><use href="#i-close"/></svg></button></div>
+    <p class="dialog-description">沿用 Windows 10 画图的主页、查看和功能区布局，并提供精确绘图增强功能。</p>
+    <div class="help-grid">
+      <section><h3>画布与选择</h3><p>选择工具点击图形，拖动移动；拖动空白处框选多个图形。拖动控制点调整尺寸。</p><p><kbd>Shift</kbd> 保持比例、绘制正圆或正方形。按住 <kbd>空格</kbd> 拖动可平移画板。</p><p>滚轮缩放；<kbd>0</kbd> 或 <kbd>Ctrl</kbd> + <kbd>0</kbd> 适合窗口。</p></section>
+      <section><h3>线条与曲线</h3><p>直线、箭头、曲线与图形直接按住拖动绘制。折线逐点单击，点起点闭合多边形；双击或 <kbd>Enter</kbd> 完成折线。</p><p>选中曲线后，拖动蓝色控制点调整弧度。<kbd>Esc</kbd> 取消当前绘制。</p><p>点击“增强”打开属性，设置精确线宽、点线、虚线和两端箭头。</p></section>
+      <section><h3>颜色与文字</h3><p>主页选择颜色 1 / 颜色 2；点击“编辑颜色”以 HEX 或 RGB 精确指定颜色，也可以取色。</p><p>文字工具点击画板，输入内容。勾选竖排即可使用中文竖版排字。</p><p>选中文字后，可在“增强”属性面板继续修改内容、字体、字号、行距和对齐。</p></section>
+      <section><h3>保存与导出</h3><p>作品自动保存在当前浏览器。保存工程可下载文件，之后导入继续编辑。</p><p>导出 PNG 支持 1×、2×、4× 高清尺寸；SVG 适合矢量编辑与放大使用。</p><p>精细橡皮最小 1 像素，放大画板可以更细致地擦除边角。</p></section>
+    </div>
+    <div class="shortcut-strip"><span><kbd>Ctrl</kbd> <kbd>Z</kbd> 撤销</span><span><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Z</kbd> 重做</span><span><kbd>Ctrl</kbd> <kbd>D</kbd> 复制</span><span><kbd>Delete</kbd> 删除</span><span><kbd>Ctrl</kbd> <kbd>S</kbd> 保存</span></div>
+    <p class="about-license">Paint 10 Plus · 版权所有 © 2026 N2N14 · <a href="https://github.com/N2N14/paint10-plus/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">AGPL-3.0-only 许可证</a> · <a href="https://github.com/N2N14/paint10-plus" target="_blank" rel="noopener noreferrer">查看源码</a></p>
+  </dialog>
+
+
+  <script src="geometry.js"></script><script src="renderer.js"></script><script src="fill-worker.js"></script><script src="raster.js"></script><script src="io.js"></script><script src="paint-images.js"></script><script src="app.js"></script><script src="paint-shell.js"></script>
+</body>
+</html>
