@@ -1,0 +1,21 @@
+{
+  "name": "paint10-plus",
+  "version": "2.0.0",
+  "private": true,
+  "description": "独立实现的 Windows 10 经典画图风格增强绘图软件",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/N2N14/paint10-plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/N2N14/paint10-plus/issues"
+  },
+  "homepage": "https://github.com/N2N14/paint10-plus#readme",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/core.test.js && node tests/raster.test.js",
+    "check": "node --check app.js && node --check geometry.js && node --check renderer.js && node --check io.js && node --check raster.js && node --check fill-worker.js && node --check paint-images.js && node --check paint-shell.js && node --check server.js"
+  },
+  "engines": { "node": ">=18" }
+}
